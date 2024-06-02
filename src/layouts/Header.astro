@@ -5,9 +5,17 @@
     <header class='wrapper region'>
         <div class='logo'>
             <a href='/'><img src='/images/siteLogo.png' /></a>
-            <a href='/'>ខ្មែរ​ភាពយន្ត</a>
+            <a href='/'>រឿង​កំសាន្ត</a>
         </div>
         <form class='search' action="/search" method="get">
+            <select name='category'>
+                <option>ទាំងអស់</option>
+                <option>រឿងខ្មែរ</option>
+                <option>រឿងថៃ</option>
+                <option>រឿងចិន</option>
+                <option>រឿងកូរ៉េ</option>
+                <option>ដើរ​​លេង</option>
+            </select>
             <input type='text' name='q' placeholder='សរសេរ​ពាក្យ​ត្រូវ​ស្វែងរក...' required />
             <input type='submit' value='ស្វែងរក' /> 
         </form>
@@ -50,7 +58,7 @@
 
     .wrapper .search{
         display: grid;
-        grid-template-columns: auto 15%;
+        grid-template-columns: 70px auto 15%;
     }
 
     .wrapper .search input, .wrapper .search select{
