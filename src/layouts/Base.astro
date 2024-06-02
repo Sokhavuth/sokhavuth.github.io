@@ -1,5 +1,6 @@
 ---
 const {pageTitle="គំរូទំព័រ", pageURL} = Astro.props
+import Header from "./Header.astro"
 ---
 
 <html lang="en">
@@ -11,8 +12,10 @@ const {pageTitle="គំរូទំព័រ", pageURL} = Astro.props
 		<link href="/images/siteLogo.png" rel="icon" />
         <link href="/fonts/setup.css" rel="stylesheet" />
         <link href="/styles/base.css" rel="stylesheet" />
+        <script is:inline src="/scripts/jquery.js"></script>
 	</head>
 	<body>
+        <Header />
 		<slot />
 	</body>
 </html>
