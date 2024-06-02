@@ -1,0 +1,18 @@
+---
+const {pageTitle="គំរូទំព័រ", pageURL} = Astro.props
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{pageTitle}</title>
+		<link href="/images/siteLogo.png" rel="icon" />
+        <link href="/fonts/setup.css" rel="stylesheet" />
+        <link href="/styles/base.css" rel="stylesheet" />
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
