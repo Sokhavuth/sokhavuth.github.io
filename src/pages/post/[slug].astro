@@ -2,7 +2,6 @@
 ---
 import Base from "../../layouts/Base.astro"
 import Post from "../../layouts/Post.astro"
-
 import { getCollection, getEntry } from 'astro:content'
 export async function getStaticPaths(){
     const posts = await getCollection('posts')
@@ -11,18 +10,9 @@ export async function getStaticPaths(){
     }))
 }
 const { post } = Astro.props
-const posts = await getCollection('posts')
-const selectedPosts = posts.filter((p) => p.slug !== post.slug)
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-}
-shuffleArray(selectedPosts)
-const randomPosts = selectedPosts.slice(0,4)
+
 ---
 
 <Base pageTitle="ទំព័រ​ការផ្សាយ" pageURL="/post" >
-    <Post post={post} randomPosts={randomPosts}></Post>
+    <Post post={post}></Post>
 </Base>
