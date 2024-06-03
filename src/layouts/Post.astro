@@ -1,7 +1,7 @@
 <!--src/layouts/Post.astro-->
 ---
 import { getEntry } from 'astro:content'
-const { post } = Astro.props
+const { post, randomPosts } = Astro.props
 const { Content } = await post.render()
 const author = await getEntry(post.data.author)
 const videos = await getEntry(post.data.videos)
@@ -62,7 +62,7 @@ const categories = post.data.categories.map((category)=>Categories[category])
         <div class="fb-comments" data-href=`https://sokhavuth.github.io/post/${post.slug}` data-width="100%" data-numposts="5"></div>
     </div>
     <div class="sidebar">
-        ផ្សាយ​ពាណិជ្ជកម្ម
+        {randomPosts[0].data.title}
     </div>
 
 </section>
