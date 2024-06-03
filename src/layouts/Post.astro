@@ -5,6 +5,7 @@ const { post } = Astro.props
 const { Content } = await post.render()
 const author = await getEntry(post.data.author)
 const videos = await getEntry(post.data.videos)
+
 const posts = await getCollection('posts')
 const selectedPosts = posts.filter((p) => p.slug !== post.slug)
 function shuffleArray(array) {
@@ -15,6 +16,7 @@ function shuffleArray(array) {
 }
 shuffleArray(selectedPosts)
 const randomPosts = selectedPosts.slice(0,4)
+
 const Categories = {
     Khmer: 'រឿងខ្មែរ',
     Thai: 'រឿងថៃ',
@@ -68,7 +70,6 @@ const categories = post.data.categories.map((category)=>Categories[category])
             setScreen(videos[0],0,false)
         </script>
         <div class="content">
-            <img style="display:none;" src={post.data.thumb} />
             <Content/>
         </div>
         <div class="fb-share-button" data-href=`https://sokhavuth.github.io/post/${post.slug}` data-layout="" data-size=""><a target="_blank" href=`https://www.facebook.com/sharer/sharer.php?u=https://sokhavuth.github.io%2F&amp;src=sdkpreparse` class="fb-xfbml-parse-ignore">Share</a></div>
