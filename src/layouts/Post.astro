@@ -72,7 +72,13 @@ const categories = post.data.categories.map((category)=>Categories[category])
         <div class="fb-comments" data-href=`https://sokhavuth.github.io/post/${post.slug}` data-width="100%" data-numposts="5"></div>
     </div>
     <div class="sidebar">
-        {randomPosts[0].data.title}
+        {randomPosts.map((post)=>(
+            <a href=`/post/${post.slug}`>
+                <img src={post.data.thumb} />
+                <img class="play-icon" src="/images/play.png" />
+                <div class="title">{post.data.title}</div>
+            </a>
+        ))}
     </div>
 
 </section>
@@ -93,14 +99,10 @@ const categories = post.data.categories.map((category)=>Categories[category])
     grid-template-columns: 70% auto;
     grid-gap: 15px;
 }
-.Post .main, .Post .sidebar{
+.Post .main{
     background-color: rgb(231, 223, 223);
     color: rgb(22, 22, 22);
     padding: 15px;
-}
-.Post .sidebar{
-    text-align: center;
-    padding: 0;
 }
 .Post .main .title{
     font: 18px/1.5 Oswald, Koulen;
@@ -148,6 +150,45 @@ const categories = post.data.categories.map((category)=>Categories[category])
     cursor: pointer;
     opacity: .7;
 }
+.Post .sidebar{
+    text-align: center;
+    padding: 0;
+}
+.Post .sidebar a{
+    display: block;
+    color: white;
+    position: relative;
+    padding-top: 56.25%;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+.Post .sidebar a img{
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+    top: 0;
+    left: 0;
+}
+.Post .sidebar a .play-icon{
+    width: auto;
+    min-height: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 15%;
+}
+.Post .sidebar a .title{
+    position: absolute;
+    bottom: 0;
+    padding: 5px 10px;
+    font: 16px/1.5 Oswald, Bayon;
+    text-shadow: 2px 2px 4px #000000;
+    background: -webkit-linear-gradient(bottom, black,transparent);
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 @media only screen and (max-width:600px){
     .Ad{
@@ -155,6 +196,9 @@ const categories = post.data.categories.map((category)=>Categories[category])
     }
     .Post{
         grid-template-columns: 100%;
+    }
+    .Post .sidebar{
+        padding: 0 15px;
     }
 }
 </style>
