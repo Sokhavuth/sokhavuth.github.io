@@ -13,7 +13,7 @@ export async function getStaticPaths({ paginate }) {
         const filteredPosts = posts.filter((post) => post.data.categories.includes(category))
         return paginate(filteredPosts, {
             params: {category},
-            pageSize: 24
+            pageSize: 20
         })
     })
   }
