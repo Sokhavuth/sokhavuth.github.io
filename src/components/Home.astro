@@ -20,9 +20,9 @@ const posts = Posts.slice(5, 21)
             </div>
         ))}
     </div>
-    <a class="navigation" href="/2">
-        <img src="/images/load-more.png" />
-    </a>
+    <div class="navigation">
+        <a href="/2"><img src="/images/load-more.png" /></a>
+    </div>
 </section>
 
 <style>
@@ -63,7 +63,6 @@ const posts = Posts.slice(5, 21)
     text-overflow: ellipsis;
 }
 .Home .navigation{
-    display: block;
     text-align: center;
 }
 @media only screen and (max-width:600px){
