@@ -7,15 +7,19 @@ const author = await getEntry(post.data.author)
 const videos = await getEntry(post.data.videos)
 
 const posts = await getCollection('posts')
-const selectedPosts = posts.filter((p) => p.slug !== post.slug)
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
+let indexes = []
+const randomPosts = []
+while(true){
+    const ranIndex = Math.floor(Math.random()*posts.length)
+    if(!(indexes.includes(ranIndex)&&(post.lug !== posts[ranIndex]))){
+        indexes.push(ranIndex)
+        randomPosts.push(posts[ranIndex])
+        if(randomPosts.length === 5){
+            break
+        }
     }
+    continue
 }
-shuffleArray(selectedPosts)
-const randomPosts = selectedPosts.slice(0,5)
 
 const Categories = {
     Khmer: 'រឿងខ្មែរ',
