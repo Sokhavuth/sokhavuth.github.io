@@ -11,11 +11,13 @@ let indexes = []
 const randomPosts = []
 while(true){
     const ranIndex = Math.floor(Math.random()*posts.length)
-    if(!(indexes.includes(ranIndex)&&(post.lug !== posts[ranIndex]))){
-        indexes.push(ranIndex)
-        randomPosts.push(posts[ranIndex])
-        if(randomPosts.length === 5){
-            break
+    if(!(indexes.includes(ranIndex))){
+        if(post.slug !== posts[ranIndex].slug){
+            indexes.push(ranIndex)
+            randomPosts.push(posts[ranIndex])
+            if(randomPosts.length === 5){
+                break
+            }
         }
     }
     continue
