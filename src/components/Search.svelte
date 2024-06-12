@@ -40,7 +40,7 @@
             const posts2 = fuse2
                 .search(q)
                 .map((result) => result.item)
-                .slice(0, 24)
+                .slice(0, 20)
 
             items = posts2
         }else{
