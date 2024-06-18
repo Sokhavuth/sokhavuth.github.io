@@ -48,7 +48,7 @@
             const posts = fuse
                 .search(q)
                 .map((result) => result.item)
-                .slice(0, 24)
+                .slice(0, 20)
 
             items = posts
         }
