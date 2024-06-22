@@ -15,7 +15,7 @@
 	    keys: ['data.title'],
 	    includeMatches: true,
 	    minMatchCharLength: 2,
-	    threshold: 0.6,
+	    threshold: 0,
     }
 
     onMount(()=>{
