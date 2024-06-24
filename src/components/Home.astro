@@ -4,6 +4,7 @@ import { getCollection, getEntry } from 'astro:content'
 const Posts = await getCollection('posts')
 Posts.sort((a, b)=>b.data.pudate-a.data.pudate)
 const posts = Posts.slice(5, 21)
+const pageAmount = Math.ceil(Posts.length/20)
 ---
 <section class="Home region">
     <div class="container">
@@ -21,8 +22,20 @@ const posts = Posts.slice(5, 21)
         ))}
     </div>
     <div class="navigation">
-        <a href="/2"><img src="/images/load-more.png" /></a>
+        <span>ទំព័រ </span>
+        <select>
+            {[...Array(pageAmount).keys()].map((pageNumber)=>(
+                    <option>{pageNumber+1}</option>
+                ))
+            }
+        </select>
+        <span> នៃ {pageAmount}</span>
     </div>
+    <script>
+        $( ".navigation select" ).on( "change", function(event) {
+            document.location = `/${event.target.value}`
+        })
+    </script>
 </section>
 
 <style>
