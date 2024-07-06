@@ -84,7 +84,7 @@ const categories = post.data.categories.map((category)=>Categories[category])
     </div>
     <div class="sidebar">
         {randomPosts.map((post)=>(
-            <a href=`/post/${post.slug}`>
+            <a href={`/post/${post.slug}`}>
                 <img src={post.data.thumb} />
                 <img class="play-icon" src="/images/play.png" />
                 <div class="title">{post.data.title}</div>

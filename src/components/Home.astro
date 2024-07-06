@@ -2,7 +2,7 @@
 ---
 import { getCollection, getEntry } from 'astro:content'
 const Posts = await getCollection('posts')
-Posts.sort((a, b)=>b.data.pudate-a.data.pudate)
+Posts.sort((a, b) => b.data.pudate-a.data.pudate)
 const posts = Posts.slice(5, 21)
 const pageAmount = Math.ceil(Posts.length/20)
 ---
@@ -10,12 +10,12 @@ const pageAmount = Math.ceil(Posts.length/20)
     <div class="container">
         {posts.map((post)=>(
             <div class="wrapper">
-                <a href=`/post/${post.slug}`>
+                <a href={`/post/${post.slug}`}>
                     <img src={post.data.thumb} />
                     <img class="play-icon" src="/images/play.png" />
                 </a>
                 <div class="date">{post.data.pudate.toLocaleDateString('it-IT')}</div>
-                <a class="title" href=`/post/${post.slug}`>
+                    <a class="title" href={`/post/${post.slug}`}>
                     <div >{post.data.title}</div>
                 </a>
             </div>
