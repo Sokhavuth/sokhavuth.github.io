@@ -6,6 +6,6 @@ import Post from "../components/Post.astro"
 const { post } = Astro.props
 ---
 
-<Base pageTitle={post.data.title} pageURL="/post" >
+<Base pageTitle={post.data.title} pageURL="/post" thumb={post.data.thumb} >
     <Post post={post}></Post>
 </Base>

@@ -61,7 +61,6 @@ const categories = post.data.categories.map((category)=>Categories[category])
         <Video client:load videos={ videos } title={ post.data.title } />
 
         <div class="content">
-            <img style="display:none;" src={post.data.thumb} />
             <Content/>
         </div>
         <div class="fb-share-button" data-href=`https://sokhavuth.github.io/post/${post.slug}` data-layout="" data-size=""><a target="_blank" href=`https://www.facebook.com/sharer/sharer.php?u=https://sokhavuth.github.io%2F&amp;src=sdkpreparse` class="fb-xfbml-parse-ignore">Share</a></div>

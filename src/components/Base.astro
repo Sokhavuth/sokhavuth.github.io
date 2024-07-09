@@ -1,5 +1,5 @@
 ---
-const {pageTitle="គំរូទំព័រ", pageURL} = Astro.props
+const {pageTitle="គំរូទំព័រ", pageURL, thumb="/images/siteLogo.png"} = Astro.props
 import Header from "./Header.astro"
 import Menu from "./Menu.astro"
 import Category from "./Category.astro"
@@ -26,6 +26,7 @@ const categoryPosts = categories.flatMap((category) => {
 		<script is:inline src="/scripts/jquery.js"></script>
 	</head>
 	<body>
+		<img style="display:none;" src={thumb} />
         <Header />
         <Menu pageURL={ pageURL } />
 		<Category categoryPosts={ categoryPosts } />
