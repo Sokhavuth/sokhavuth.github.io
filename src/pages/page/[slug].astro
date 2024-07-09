@@ -1,6 +1,5 @@
 <!--src/pages/page/[slug].astro-->
 ---
-import Base from "../../layouts/Base.astro"
 import Page from "../../layouts/Page.astro"
 
 import { getCollection } from 'astro:content'
@@ -14,6 +13,5 @@ const { page } = Astro.props
 const { slug } = Astro.params
 ---
 
-<Base pageTitle="​​​​​​​​​​​​​​​​​​ទំព័រ​ព័ត៌មាន" pageURL={slug}>
-    <Page page={page}/>
-</Base>
+
+<Page page={page} slug={slug} />

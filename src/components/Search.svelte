@@ -48,12 +48,18 @@
             const posts = fuse
                 .search(q)
                 .map((result) => result.item)
-                .slice(0, 20)
+                .slice()
 
-            items = posts
+            posts.sort((a, b)=>b.data.pudate - a.data.pudate)
+            items = posts.slice(0,20)
         }
     })
 </script>
+
+<section class="Ad region">
+    <img src="/images/ad.jpg" />
+    <img src="/images/ad.jpg" />
+</section>
 
 <section class="Category region">
     <div class="container">
@@ -73,6 +79,15 @@
 </section>
 
 <style>
+.Ad{
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-gap: 10px;
+    padding-top: 0;
+}
+.Ad img{
+    width: 100%;
+}
 .Category .container{
     display: grid;
     grid-template-columns: repeat(4, calc(100% / 4 - 11.25px));
@@ -109,11 +124,12 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.Category .pagination{
-    display: block;
-    text-align: center;
-}
+
 @media only screen and (max-width:600px){
+    .Ad{
+        grid-template-columns: 100%;
+        padding: 0 10px;
+    }
     .Category .container{
         grid-template-columns: 100%;
         padding: 30px 10px;

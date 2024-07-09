@@ -1,5 +1,6 @@
 <!--src/pages/[category]/[page].astro-->
 ---
+import Base from '../../layouts/Base.astro'
 import Category from '../../layouts/Category.astro'
 
 import { getCollection } from 'astro:content'
@@ -15,10 +16,11 @@ export async function getStaticPaths({ paginate }) {
             pageSize: 20
         })
     })
-}
-
-const {page} = Astro.props
-const {category} = Astro.params
+  }
+  const {page} = Astro.props
+  const {category} = Astro.params
 ---
 
-<Category page={page} category={category}/>
+<Base pageTitle="ទំព័រជំពូក" pageURL={category} >
+    <Category page={page} category={category}/>
+</Base>

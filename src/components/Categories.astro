@@ -1,6 +1,6 @@
-<!--src/components/Pagination.astro-->
+<!--src/layouts/Category.astro-->
 ---
-const { page } = Astro.props
+const { page, category } = Astro.props
 ---
 
 <section class="Ad region">
@@ -8,7 +8,7 @@ const { page } = Astro.props
     <img src="/images/ad.jpg" />
 </section>
 
-<section class="Home region">
+<section class="Category region">
     <div class="container">
         {page.data.map((post)=>(
             <div class="wrapper">
@@ -23,7 +23,7 @@ const { page } = Astro.props
             </div>
         ))}
     </div>
-    <div class="pagination">
+    <div class="pagination" data-category={category}>
         <span>ទំព័រ </span>
         <select data-page={page.currentPage}>
             {[...Array(page.lastPage).keys()].map((pageNumber)=>(
@@ -37,9 +37,10 @@ const { page } = Astro.props
 
 <script>
     const currentPage = $('.pagination select').attr('data-page')
+    const category = $('.pagination').attr('data-category')
     $('.pagination select').val(currentPage)
     $( ".pagination select" ).on( "change", function(event) {
-        document.location = `/${event.target.value}`
+        document.location = `/${category}/${event.target.value}`
     })
 </script>
 
@@ -53,27 +54,27 @@ const { page } = Astro.props
 .Ad img{
     width: 100%;
 }
-.Home .container{
+.Category .container{
     display: grid;
     grid-template-columns: repeat(4, calc(100% / 4 - 11.25px));
     grid-gap: 30px 15px;
     padding: 30px 0;
 }
-.Home .container .wrapper a{
+.Category .container .wrapper a{
     position: relative;
     padding-top: 56.25%;
     overflow: hidden;
     width: 100%;
     display: block;
 }
-.Home .container .wrapper a img{
+.Category .container .wrapper a img{
     position: absolute;
     width: 100%;
     min-height: 100%;
     top: 0;
     left: 0;
 }
-.Home .container .wrapper a .play-icon{
+.Category .container .wrapper a .play-icon{
     width: auto;
     min-height: auto;
     width: 15%;
@@ -81,15 +82,15 @@ const { page } = Astro.props
     left: 50%;
     transform: translate(-50%, -50%)
 }
-.Home .container .wrapper .title{
+.Category .container .wrapper .title{
     padding-top: 0;
 }
-.Home .container .wrapper .title div{
+.Category .container .wrapper .title div{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.Home .pagination{
+.Category .pagination{
     display: block;
     text-align: center;
 }
@@ -98,7 +99,7 @@ const { page } = Astro.props
         grid-template-columns: 100%;
         padding: 0 10px;
     }
-    .Home .container{
+    .Category .container{
         grid-template-columns: 100%;
         padding: 30px 10px;
     }

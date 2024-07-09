@@ -2,7 +2,16 @@
 const {pageTitle="គំរូទំព័រ", pageURL} = Astro.props
 import Header from "./Header.astro"
 import Menu from "./Menu.astro"
+import Category from "./Category.astro"
 import Footer from "./Footer.astro"
+
+import { getCollection } from 'astro:content'
+const posts = await getCollection('posts')
+posts.sort((a, b)=>b.data.pudate - a.data.pudate)
+const categories = ['Khmer',"Thai","Chinese","Korean","Travel"]
+const categoryPosts = categories.flatMap((category) => {
+    return posts.find((post) => post.data.categories.includes(category))
+})
 ---
 
 <html lang="en">
@@ -10,15 +19,16 @@ import Footer from "./Footer.astro"
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{pageTitle}</title>
+		<title>{ pageTitle }</title>
 		<link href="/images/siteLogo.png" rel="icon" />
         <link href="/fonts/setup.css" rel="stylesheet" />
         <link href="/styles/base.css" rel="stylesheet" />
-        <script is:inline src="/scripts/jquery.js"></script>
+		<script is:inline src="/scripts/jquery.js"></script>
 	</head>
 	<body>
         <Header />
-        <Menu pageURL={pageURL} />
+        <Menu pageURL={ pageURL } />
+		<Category categoryPosts={ categoryPosts } />
 		<slot />
         <Footer />
 	</body>

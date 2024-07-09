@@ -9,7 +9,7 @@ const postCollection = defineCollection({
       categories: z.array(z.string()),
       thumb: z.string(),
       pudate: z.date(),
-      videos: reference('videos'),
+      videos: reference('videos').optional(),
       author: reference('authors'),
       draft: z.boolean().default(false),
     }),

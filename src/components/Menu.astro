@@ -3,26 +3,11 @@
 const {pageURL} = Astro.props
 
 let home = ''
-let Khmer = ''
-let Thai = ''
-let Chinese = ''
-let Korean = ''
-let Travel = ''
 let contact = ''
 let about = ''
 
 if(pageURL === '/'){
     home = 'active'
-}else if(pageURL === 'Khmer'){
-    Khmer = 'active'
-}else if(pageURL === 'Thai'){
-    Thai = 'active'
-}else if(pageURL === 'Chinese'){
-    Chinese = 'active'
-}else if(pageURL === 'Korean'){
-    Korean = 'active'
-}else if(pageURL === 'Travel'){
-    Travel = 'active'
 }else if(pageURL === 'contact'){
     contact = 'active'
 }else if(pageURL === 'about'){
@@ -35,11 +20,6 @@ if(pageURL === '/'){
         <div class="region">
             <div class="topnav" id="myTopnav">
                 <a href="/" class=`home ${home}`>ទំព័រ​ដើម</a>
-                <a href="/Khmer/1" class=`Khmer ${Khmer}`>រឿង​ខ្មែរ</a>
-                <a href="/Thai/1" class=`Thai ${Thai}`>រឿង​ថៃ</a>
-                <a href="/Chinese/1" class=`Chinese ${Chinese}`>រឿង​ចិន</a>
-                <a href="/Korean/1" class=`Korean ${Korean}`>រឿង​កូរ៉េ</a>
-                <a href="/Travel/1" class=`Travel ${Travel}`>​ដើរលេង</a>
                 <a href="/page/contact" class=`contact ${contact}`>ទំនាក់ទំនង</a>
                 <a href="/page/about" class=`about ${about}`>អំពីយើង​ខ្ញុំ</a>
                 <a href="javascript:void(0);" class="icon" onclick="myFunction()">
@@ -62,12 +42,12 @@ if(pageURL === '/'){
 
 <style>
 nav{
-    background-color: rgb(189, 59, 11);
+    background-color: var(--menu);
 }
 .topnav {
-    background-color: rgb(189, 59, 11);
+    background-color: var(--menu);
     overflow: hidden;
-  }
+}
   .topnav a {
     float: left;
     display: block;
