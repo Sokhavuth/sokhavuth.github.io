@@ -6,7 +6,8 @@ import { getCollection } from 'astro:content'
 export async function getStaticPaths({paginate}){
     const Posts = await getCollection('posts')
     Posts.sort((a, b)=>b.data.pudate-a.data.pudate)
-    const posts = Posts.slice()
+    const filteredPosts = Posts.filter((post) => !(post.data.categories.includes("News")))
+    const posts = filteredPosts.slice()
     return paginate(posts, {pageSize: 20})
 }
 const { page } = Astro.props

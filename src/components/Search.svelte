@@ -24,7 +24,8 @@
             'រឿងថៃ': 'Thai',
             'រឿងចិន': 'Chinese',
             'រឿងកូរ៉េ': 'Korean',
-            'ដើរ​​លេង': 'Travel'
+            'ដើរ​​លេង': 'Travel',
+            'ព័ត៌មាន': 'News'
         }
 
         const searchParams = new URLSearchParams(document.location.search)

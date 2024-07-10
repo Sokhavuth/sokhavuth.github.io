@@ -12,7 +12,8 @@ if(post.data.videos){
     videos = rawData.data.videos
 }
 
-const posts = await getCollection('posts')
+const Posts = await getCollection('posts')
+const posts = Posts.filter((post) => !(post.data.categories.includes("News")))
 let indexes = []
 const randomPosts = []
 while(true){

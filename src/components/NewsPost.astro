@@ -4,17 +4,18 @@ import Video from "./Video.svelte"
 import { getEntry, getCollection } from 'astro:content'
 const { post } = Astro.props
 const { Content } = await post.render()
-const author = await getEntry("authors", post.data.author)
+const author = await getEntry(post.data.author)
 let rawData
 let videos
 if(post.data.videos){
-    rawData = await getEntry("videos", post.data.videos)
+    rawData = await getEntry(post.data.videos)
     videos = rawData.data.videos
 }
 
-const posts = await getCollection('news')
-posts.sort((a, b)=>b.data.pudate-a.data.pudate)
-const latestPosts = posts.slice(0, 5)
+const Posts = await getCollection('posts')
+Posts.sort((a, b)=>b.data.pudate-a.data.pudate)
+const filteredPosts = Posts.filter((post) => post.data.categories.includes("News"))
+const latestPosts = filteredPosts.slice(0, 5)
 
 const Categories = {
     Khmer: 'រឿងខ្មែរ',

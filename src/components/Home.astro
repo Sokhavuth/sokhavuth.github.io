@@ -3,8 +3,9 @@
 import { getCollection, getEntry } from 'astro:content'
 const Posts = await getCollection('posts')
 Posts.sort((a, b) => b.data.pudate-a.data.pudate)
-const posts = Posts.slice(5, 21)
-const pageAmount = Math.ceil(Posts.length/20)
+const filteredPosts = Posts.filter((post) => !(post.data.categories.includes("News")))
+const posts = filteredPosts.slice(5, 21)
+const pageAmount = Math.ceil(filteredPosts.length/20)
 ---
 <section class="Home region">
     <div class="container">
