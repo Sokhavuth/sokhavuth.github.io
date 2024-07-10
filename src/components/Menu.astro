@@ -3,11 +3,14 @@
 const {pageURL} = Astro.props
 
 let home = ''
+let news = ''
 let contact = ''
 let about = ''
 
 if(pageURL === '/'){
     home = 'active'
+}else if(pageURL === 'News'){
+    news = 'active'
 }else if(pageURL === 'contact'){
     contact = 'active'
 }else if(pageURL === 'about'){
@@ -20,6 +23,7 @@ if(pageURL === '/'){
         <div class="region">
             <div class="topnav" id="myTopnav">
                 <a href="/" class=`home ${home}`>ទំព័រ​ដើម</a>
+                <a href="/News/1" class=`news ${news}`>ព័ត៌មាន</a>
                 <a href="/page/contact" class=`contact ${contact}`>ទំនាក់ទំនង</a>
                 <a href="/page/about" class=`about ${about}`>អំពីយើង​ខ្ញុំ</a>
                 <a href="javascript:void(0);" class="icon" onclick="myFunction()">
