@@ -1,0 +1,190 @@
+<!--src/components/Post.astro-->
+---
+import Video from "./Video.svelte"
+import { getEntry, getCollection } from 'astro:content'
+const { post } = Astro.props
+const { Content } = await post.render()
+const author = await getEntry("authors", post.data.author)
+let rawData
+let videos
+if(post.data.videos){
+    rawData = await getEntry("videos", post.data.videos)
+    videos = rawData.data.videos
+}
+
+const posts = await getCollection('news')
+posts.sort((a, b)=>b.data.pudate-a.data.pudate)
+const latestPosts = posts.slice(0, 5)
+
+const Categories = {
+    Khmer: 'រឿងខ្មែរ',
+    Thai: 'រឿងថៃ',
+    Chinese: 'រឿងចិន',
+    Korean: 'រឿងកូរ៉េ',
+    Travel: 'ដើរ​លេង',
+    News: 'ព័ត៌មាន'
+}
+const categories = post.data.categories.map((category)=>Categories[category])
+---
+<section class="Ad region">
+    <img src="/images/ad.jpg" />
+    <img src="/images/ad.jpg" />
+</section>
+
+<div id="fb-root"></div>
+<script is:inline async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v14.0&appId=3245867309046703&autoLogAppEvents=1" nonce="uHaMaoD7"></script>
+
+<section class="Post region">
+    <div class="main">
+        <h3 class="title">{post.data.title}</h3>
+        <div class="categories">
+            <span>​​​​​​​​​ជំពូកៈ {categories.join(', ')}</span>
+            <span>{post.data.pudate.toLocaleDateString('it-IT')}</span>
+        </div>
+        <div class="author">
+            <span>អ្នក​​​​​​​​​​រៀបរៀងៈ {author.data.name}</span>
+        </div>
+
+        <Video client:load videos={ videos } title={ post.data.title } />
+
+        <div class="content">
+            <Content/>
+        </div>
+        <div class="fb-share-button" data-href=`https://sokhavuth.github.io/news_/${post.slug}` data-layout="" data-size=""><a target="_blank" href=`https://www.facebook.com/sharer/sharer.php?u=https://sokhavuth.github.io%2F&amp;src=sdkpreparse` class="fb-xfbml-parse-ignore">Share</a></div>
+        <div class="fb-comments" data-href=`https://sokhavuth.github.io/news_/${post.slug}` data-width="100%" data-numposts="5"></div>
+    </div>
+    <div class="sidebar">
+        {latestPosts.map((post)=>(
+            <a href={`/news_/${post.slug}`}>
+                <img src={post.data.thumb} />
+                <img class="play-icon" src="/images/play.png" />
+                <div class="title">{post.data.title}</div>
+            </a>
+        ))}
+    </div>
+
+</section>
+
+<style is:global>
+.Ad{
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-gap: 10px;
+    padding-top: 0;
+}
+.Ad img{
+    width: 100%;
+}
+.Post{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 70% auto;
+    grid-gap: 15px;
+}
+.Post .main{
+    background-color: rgb(211, 205, 205);
+    color: rgb(22, 22, 22);
+    padding: 15px;
+}
+.Post .main .title{
+    font: 18px/1.5 Oswald, Koulen;
+    margin-bottom: 20px;
+}
+.Post .main .categories span:nth-child(2){
+    float: right;
+}
+.Post .main .author{
+    margin-bottom: 30px;
+}
+.Post .main .video .screen div{
+    position: relative;
+    padding-top: 56.25%;
+    border: 1px solid white;
+}
+.Post .main .video .screen div iframe{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.Post .main .video .playlist{
+    max-height: 405px;
+    overflow: auto;
+    margin-bottom: 20px;
+    border: 1px solid white;
+}
+.Post .main .video .playlist .part{
+    text-align: left;
+    padding: 10px;
+    color: var(--playlist-color);
+    display: block;
+    height: auto;
+    font-size: 16px;
+    background: var(--playlist-part);
+    border: 1px solid white;
+    border-top: none;
+}
+.Post .main .video .playlist .part:last-child{
+    margin-bottom: 0;
+}
+.Post .main .video .playlist .part:hover{
+    cursor: pointer;
+    opacity: .7;
+}
+.clickedPart{
+    background: var(--playlist-clicked-bg) !important;
+    color: var(--playlist-clicked) !important;
+}
+.Post .sidebar a{
+    display: block;
+    color: white;
+    position: relative;
+    padding-top: 56.25%;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+.Post .sidebar a:last-child{
+    margin-bottom: 0;
+}
+.Post .sidebar a img{
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+    top: 0;
+    left: 0;
+}
+.Post .sidebar a .play-icon{
+    width: auto;
+    min-height: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 15%;
+}
+.Post .sidebar a .title{
+    position: absolute;
+    bottom: 0;
+    padding: 5px 10px;
+    font: 16px/1.5 Oswald, Bayon;
+    text-shadow: 2px 2px 4px #000000;
+    background: -webkit-linear-gradient(bottom, black,transparent);
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media only screen and (max-width:600px){
+    .Ad{
+        grid-template-columns: 100%;
+        padding: 0 10px;
+    }
+    .Post{
+        grid-template-columns: 100%;
+    }
+    .Post .sidebar{
+        padding: 0 15px;
+    }
+}
+</style>
