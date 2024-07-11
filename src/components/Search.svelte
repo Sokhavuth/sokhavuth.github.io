@@ -66,14 +66,27 @@
     <div class="container">
         {#each items as item}
             <div class="wrapper">
+                {#if item.data.categories.includes("News")}
+                <a href="/news/{item.slug}">
+                    <img src={item.data.thumb} />
+                    <img class="play-icon" src="/images/play.png" />
+                </a>
+                {:else}
                 <a href="/post/{item.slug}">
                     <img src={item.data.thumb} />
                     <img class="play-icon" src="/images/play.png" />
                 </a>
+                {/if}
                 <div class="date">{item.data.pudate.toLocaleDateString("it-IT")}</div>
+                {#if item.data.categories.includes("News")}
+                <a class="title" href="/news/{item.slug}">
+                    <div >{item.data.title}</div>
+                </a>
+                {:else}
                 <a class="title" href="/post/{item.slug}">
                     <div >{item.data.title}</div>
                 </a>
+                {/if}
             </div>
         {/each}
     </div>
