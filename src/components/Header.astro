@@ -21,7 +21,10 @@
             <input type='submit' value='ស្វែងរក' /> 
         </form>
         <div class='dateNow'>
-            {new Date().toLocaleDateString('km-KH')}
+            <script>
+                const now = new Date().toLocaleDateString('it-IT')
+                $('.header .wrapper .dateNow').append(now)
+            </script>
         </div>
     </header>
 </section>
