@@ -58,7 +58,7 @@ const categories = post.data.categories.map((category)=>Categories[category])
         {latestPosts.map((post)=>(
             <a href={`/news/${post.slug}`}>
                 <img src={post.data.thumb} />
-                <img class="play-icon" src="/images/play.png" />
+                {post.data.videos && <img class="play-icon" src="/images/play.png" />}
                 <div class="title">{post.data.title}</div>
             </a>
         ))}
