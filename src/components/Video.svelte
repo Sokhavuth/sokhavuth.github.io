@@ -24,7 +24,7 @@ function setScreen(video,id,click){
 
     if(video['vidType'] !== 'Facebook'){
         iframe = `<div><iframe  src="${url}" frameborder="0" allowfullscreen></iframe></div>`
-      }else{
+    }else{
         iframe = `<div class="fb-video" data-href="${url}" data-width="auto" data-show-captions="true"></div>`
     }
     
