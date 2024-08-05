@@ -4,7 +4,6 @@ const Posts = await getCollection('posts')
 Posts.sort((a, b)=>b.data.pudate-a.data.pudate)
 const filteredPosts = Posts.filter((post) => !(post.data.categories.includes("News")))
 const posts = filteredPosts.slice(0, 5)
-//console.log(Posts.length)
 ---
 
 <section class="Latest region">
